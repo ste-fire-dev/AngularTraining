@@ -1,3 +1,14 @@
-<p>
-  status-board works!
-</p>
+<mat-grid-list cols="6" rowHeight="fit" style="height: calc(100vh - 24px)">
+  <mat-grid-tile rowspan="4">
+    <mat-list>
+      <mat-list-item *ngFor="let department of departments" (click)="changeDepartment(department.id)"> {{department.name}} </mat-list-item>
+    </mat-list>
+    <button mat-raised-button (click)="openAddDepartmentModal()">Add department</button>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="1" colspan="5">
+    2
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="3" colspan="5">
+    3
+  </mat-grid-tile>
+</mat-grid-list>

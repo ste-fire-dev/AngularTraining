@@ -1,4 +1,4 @@
-import { StatusBoardComponent } from './status-board.component';
+import { StatusBoardComponent } from './components/main/status-board.component';
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
