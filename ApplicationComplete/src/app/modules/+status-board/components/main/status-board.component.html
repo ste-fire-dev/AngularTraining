@@ -6,9 +6,45 @@
     <button mat-raised-button (click)="openAddDepartmentModal()">Add department</button>
   </mat-grid-tile>
   <mat-grid-tile rowspan="1" colspan="5">
-    2
+    <input matInput placeholder="Search...">
+    <input matInput [matDatepicker]="picker" placeholder="Since">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <!-- <filter-picker></filter-picker> -->
+    <button mat-raised-button (click)="searchTickets()">Search</button>
   </mat-grid-tile>
   <mat-grid-tile rowspan="3" colspan="5">
-    3
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: calc(100% - 30px)">
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef> Department </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.department}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="creator">
+        <th mat-header-cell *matHeaderCellDef> Creator </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.creator}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="asignee">
+        <th mat-header-cell *matHeaderCellDef> Asignee </th>
+        <td mat-cell *matCellDef="let ticket"> {{ticket.asignee}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
   </mat-grid-tile>
 </mat-grid-list>

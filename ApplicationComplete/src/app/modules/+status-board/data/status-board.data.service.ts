@@ -7,7 +7,6 @@ export class StatusBoardDataService {
     constructor(private http: HttpClient) {}
 
     getDepartments() {
-        console.log('3');
         return of([
             {id: 0, name: "Departamentul 1"},
             {id: 1, name: "Departamentul 2"},

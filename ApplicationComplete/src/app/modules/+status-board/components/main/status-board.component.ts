@@ -1,5 +1,6 @@
 import { StatusBoardService } from './../../services/status-board.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Ticket, TicketStatus } from '../../../../model/ticket.model';
 
 // As per https://github.com/web-dave/provide-in-test/issues/1
 
@@ -13,13 +14,24 @@ export class StatusBoardComponent implements OnInit {
 
   departments: any[] = [];
 
+  displayedColumns: string[] = [
+    'title',
+    'status',
+    'department',
+    'creator',
+    'asignee'
+  ];
+
+  dataSource = [];
+
   constructor(private service: StatusBoardService) { }
 
   ngOnInit() {
-    console.log('1');
+
+    this.dataSource = this.service.getTickets();
+
     this.service.getDepartments().subscribe(
       departments => {
-        console.log(departments);
         this.departments = departments;
       }
     );
