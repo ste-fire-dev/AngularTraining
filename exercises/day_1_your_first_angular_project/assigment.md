@@ -79,18 +79,18 @@ Now that you have your angualr development enviroment up and running, it is time
         \---tslint.json
     ```
 
- 5. Start your angular app via and check the running application under http://localhost:4200 : 
+ 5. Start your angular app via this command and check the running application under http://localhost:4200 : 
         
         > npm start
 
-## Creating the imitator component
+## Creating the Imitator component
 
 **Components** are the main building block of angular applications, binding the views to the applications logic. 
 
 All angular components correspond to a certain  **angular Module**.
 You will get more into angular modules later, for now, just keep in mind that no component can exista outside a certain module.
 
-All compoents are usually composed from 3 files: 
+All components are usually composed from 3 files: 
         `component.css component.ts and component.html`
  
 If you look inside the generated project under `../src/app/` you will find that the Angular CLI  generated the following 4 files:
@@ -100,25 +100,25 @@ If you look inside the generated project under `../src/app/` you will find that 
         app.component.ts
         app.module.ts
 
-The first 3 represent the `app.component` which is the most important component of the application due to the fact that it hold all the application's content.
+The first 3 represent the `app.component`, which is the most important component of the application due to the fact that it hold all the application's content.
 
 Because a component cannot live outside a module you can see that the `app.component` is referenced inside the  `app.module`. Take a look. Don't worry if you don't understand all the code, just keep in mind that  a component will be part of a module if it is declared inside that modules `declarations` array, like this: 
 
 ```JavaScript
 @NgModule({
   declarations: [
-    AppComponent <-- AppComponent is part of this module
+    AppComponent // <-- AppComponent is part of this module
   ],
   imports: [
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent] <-- The AppComponent is set as the entry component of the application !!! It has nothing to do with the bootrap CSS library
+  bootstrap: [AppComponent] // <-- `The AppComponent is set as the entry component of the application !!! It has nothing to do with the bootrap CSS library`
 })
 export class AppModule { }
 ```
 
-Like the `app.component`, the `app.module` is the most important module of a angular application, because it hold all other main modules of the application. You will have a better understanding of this once you will get to split your code into different modules. Also keep in mind that it is here we you can set the main entry components for your application via the `declaraions` array.
+Like the `app.component`, the `app.module` is the most important module of a angular application, because it hold all other main modules of the application. You will have a better understanding of this once you will get to split your code into different modules. Also keep in mind that it is here where you can set the main entry components for your application via the `declaraions` array.
 
 Now that you have your angular project structure all set and ready for running, it's time to write the code of your first angular component.
 
@@ -152,9 +152,11 @@ Your `app` folder structure should now look like this:
     \---tsconfig.app.json
 ```
 
-The main file for for your component is `imitator.component.ts`. This file serves as a controller. Here you will implement all the logic of the component. Here you can also see how the component is linked to a coresponding html file and a css file:
+The main file for for your component is `imitator.component.ts`. This file serves as a controller. Here you will implement all the logic of the component. Here you can also see how the component is linked to a coresponding html file and a css file.
 
-Check the figure bellow to understand what the code inside the imitator.component.ts file means.
+<div style="page-break-after: always;"></div>
+
+Check the code bellow to understand what the code inside the imitator.component.ts file means.
 
 ```TypeScript
 import { Component, OnInit } from '@angular/core'; // Functions imported from the Angular framework
@@ -190,6 +192,8 @@ You will see that the CLI allready declared the new component inside the `app.mo
 
 Now, you will bind the component to it's corresponding view and implement the specifications.
 
+<div style="page-break-after: always;"></div>
+
 1. First, open `imitator.component.ts` file and add a new property to the compoent class called `displayText`:
 
     ```TypeScript
@@ -200,7 +204,8 @@ Now, you will bind the component to it's corresponding view and implement the sp
     })
     export class ImitatorComponentComponent implements OnInit {
 
-        displayText: string; <-- add this
+        displayText: string; //<-- add this
+
         constructor() { }
 
         ngOnInit() {
@@ -213,20 +218,24 @@ Now, you will bind the component to it's corresponding view and implement the sp
         <p>{{displayText}}</p>
         <input type="text" [(ngModel)]="displayText"/>
     ```
-    Don't worry if you don't understand the syntax for now. 
+    Don't worry if you don't understand the syntax for now.
 
     Just keep in mind that double brackets like this `{{some_component_propery}}` serve as a place holder in the html. The brackets will be replaced with the value of the `displayText` property at runtime.
-   
-    Also this piece of code  `[(ngModel)]="displayText"` binds the value of the input field to out component's `displayText`. The keyword `ngModel` is actually a nice angular component that attaches itself to the native html code and privides this functionality under the hood. 
+
+    Also this piece of code  `[(ngModel)]="displayText"` binds the value of the input field to our component's `displayText`. 
+
+    The keyword `ngModel` is actually a nice angular component that attaches itself to the native html code and privides this functionality under the hood.
 
     Because all components live insde a module,  the `ngModel` lives inside the **FormsModule** which is a module provided by angular, and in order to use the `ngModel` compoenent you must first import it's host module.
+
+    <div style="page-break-after: always;"></div>
 
     To import the module add the following lines inside yout `app.module.ts` :
 
     ```TypeScript
     import { BrowserModule } from '@angular/platform-browser';
     import { NgModule } from '@angular/core';
-    import { FormsModule } from '@angular/forms'; <-- Add this
+    import { FormsModule } from '@angular/forms'; //<-- Add this
 
 
     import { AppComponent } from './app.component';
@@ -240,20 +249,20 @@ Now, you will bind the component to it's corresponding view and implement the sp
     ],
     imports: [
         BrowserModule,
-        FormsModule <-- Add this
+        FormsModule //<-- Add this
     ],
     providers: [],
     bootstrap: [AppComponent]
     })
     export class AppModule { }
         ```
- 3. The compoenet you just created is ready to use, so add it you your `app.component.html`; replace that file's content with the `selector` of your component:
+ 3. The component you just created is ready to use, so add it you your `app.component.html`; replace that file's content with the `selector` of your component:
 
     ```HTML
-    // app.component.html
+    <!--app.component.html -->
     <app-imitator-component></app-imitator-component>
     ```
 
-4. Start yout application via the `npm start` command or  `ng serve --open`. 
+4. Start yout application via the `npm start` command or  `ng serve --open`.
 
 Congradulations on your first Angular component.
